@@ -1,6 +1,12 @@
-import { Meta } from "@remix-run/react";
+import { Meta, Links, Outlet } from "@remix-run/react";
 
-// Funcion con la informacion meta (Va enlazado con el componente Meta)
+// Components
+import Header from "./components/header";
+
+// Hoja de estilos
+import styles from "./styles/index.css";
+
+// Funcion para agregar informacion meta al componente Meta
 export function meta() {
   return {
     charset: "utf-8",
@@ -9,11 +15,43 @@ export function meta() {
   };
 }
 
+// Funcion para agregar hojas de estilo
+export function links() {
+  // Arreglo con cada uno de los objetos con la hoja de estilos a agregar
+  return [
+    // Normalize
+    {
+      rel: "stylesheet",
+      href: "https://necolas.github.io/normalize.css/8.0.1/normalize.css",
+    },
+    // Google Fonts
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "true",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap",
+    },
+    // Hoja de estilos local
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+  ];
+}
+
 // Funcion Principal
 export default function App() {
   return (
     <Document>
-      <h1>Hola Mundo</h1>
+      {/* Inyectando cada componente en el Layout (Que esten en routes y a cada uno de ellos se le genera una ruta) */}
+      <Outlet />
     </Document>
   );
 }
@@ -25,8 +63,13 @@ function Document({ children }) {
       <head>
         {/* Componente con la informacion de Meta */}
         <Meta />
+        {/* Componente con la informacion de los links */}
+        <Links />
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
