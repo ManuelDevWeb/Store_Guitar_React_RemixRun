@@ -6,7 +6,7 @@ import Header from "./components/header";
 // Hoja de estilos
 import styles from "./styles/index.css";
 
-// Funcion para agregar informacion meta al componente Meta
+// Funcion para agregar informacion meta al componente Meta que nos provee remix run
 export function meta() {
   return {
     charset: "utf-8",
@@ -15,7 +15,7 @@ export function meta() {
   };
 }
 
-// Funcion para agregar hojas de estilo
+// Funcion para agregar hojas de estilo y links al componente Link que nos provee remix run
 export function links() {
   // Arreglo con cada uno de los objetos con la hoja de estilos a agregar
   return [
