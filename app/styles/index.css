@@ -26,7 +26,7 @@ img {
   height: auto;
 }
 
-/* Aplica el estilo a las etiquetas que hagan match con el valor contenedor */
+/* Aplica el estilo al main y las etiquetas que hagan match con el valor contenedor */
 [class*="contenedor"],
 main {
   width: min(95%, 120rem);
