@@ -1,4 +1,4 @@
-import { Meta, Links, Outlet } from "@remix-run/react";
+import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
 
 // Components
 import Header from "./components/header";
@@ -69,6 +69,11 @@ function Document({ children }) {
       <body>
         <Header />
         {children}
+
+        {/* Componente con todas las optimizaciones */}
+        <Scripts />
+        {/* Componente que permite hacer live reload */}
+        <LiveReload />
       </body>
     </html>
   );

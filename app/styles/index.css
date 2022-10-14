@@ -26,12 +26,14 @@ img {
   height: auto;
 }
 
+/* Aplica el estilo a las etiquetas que hagan match con el valor contenedor */
 [class*="contenedor"],
 main {
   width: min(95%, 120rem);
   margin: 3rem auto;
 }
 
+/* Aplica el estilo a las etiquetas que hagan match con el valor heading */
 [class*="heading"] {
   font-size: 4rem;
   text-align: center;
