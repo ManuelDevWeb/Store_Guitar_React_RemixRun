@@ -2,6 +2,7 @@ import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
 
 // Components
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 // Hoja de estilos
 import styles from "./styles/index.css";
@@ -69,6 +70,7 @@ function Document({ children }) {
       <body>
         <Header />
         {children}
+        <Footer />
 
         {/* Componente con todas las optimizaciones */}
         <Scripts />
