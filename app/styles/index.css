@@ -131,7 +131,7 @@ main {
 .footer .copyright {
   color: var(--white);
   text-decoration: none;
-  font-size: 2.8rem;
+  font-size: 2rem;
   text-decoration: none;
   font-weight: 700;
 }
@@ -139,5 +139,4 @@ main {
 .footer .copyright {
   text-align: center;
   font-weight: normal;
-  font-size: 1.4rem;
 }
