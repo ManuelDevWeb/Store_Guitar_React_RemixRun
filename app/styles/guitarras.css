@@ -22,6 +22,8 @@
   grid-template-columns: 2fr 3fr;
   gap: 1rem;
   align-items: center;
+  max-width: 70rem;
+  margin: 0 auto;
 }
 
 .guitarra .contenido {
