@@ -12,6 +12,14 @@ export function meta({ data }) {
   // La data que se recibe es la que se retorna en la funcion loader
   // console.log(data);
 
+  // Validamos si existe data que se recibe del loader
+  if (!data) {
+    return {
+      title: "GuitarLA - Guitarra no encontrada",
+      description: "Guitarra no encontrada",
+    };
+  }
+
   return {
     title: `GuitarLA - ${data[0].attributes.nombre}`,
     description: `Guitarras, venta de guitarras, guitarra ${data[0].attributes.nombre}`,
@@ -40,6 +48,15 @@ export async function loader({ request, params }) {
   const { guitarraUrl } = params;
 
   const guitarra = await getGuitarraByUrl(guitarraUrl);
+
+  // Si no hay guitarra con esa url, retornamos error para que se capture en el root con las funciones que provee remix run
+  if (guitarra.data.length === 0) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Guitarra no encontrada",
+    });
+  }
+
   return guitarra.data;
 }
 

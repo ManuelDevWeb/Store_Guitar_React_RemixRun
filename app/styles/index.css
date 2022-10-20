@@ -140,3 +140,24 @@ main {
   text-align: center;
   font-weight: normal;
 }
+
+/* Styles Error */
+.error,
+.error-enlace {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.contenedor-enlace {
+  display: flex;
+  justify-content: center;
+}
+
+.error-enlace {
+  background-color: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  margin-bottom: 0;
+  padding: 0.5rem;
+}
