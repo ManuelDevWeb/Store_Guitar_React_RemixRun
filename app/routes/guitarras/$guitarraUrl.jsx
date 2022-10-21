@@ -29,7 +29,7 @@ export function meta({ data }) {
 // Funcion para agregar hojas de estilo y link al componente Link que nos provee remix run
 // Ya no toca llamar el componente Link, puesto se agrego en el archivo root.jsx
 export function links() {
-  // Arreglo con cada uno de los ojetos con la hoja de estilos a agregar
+  // Arreglo con cada uno de los objetos con la hoja de estilos a agregar
   return [
     // Hoja de estilos local
     {
