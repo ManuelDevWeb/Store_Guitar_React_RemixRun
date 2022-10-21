@@ -42,6 +42,12 @@ main {
   margin: 5rem 0;
 }
 
+.imagen-error {
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+}
+
 /* Styles Header */
 .header {
   background-image: linear-gradient(

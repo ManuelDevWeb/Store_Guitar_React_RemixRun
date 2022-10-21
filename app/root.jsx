@@ -12,6 +12,9 @@ import {
 import Header from "./components/header";
 import Footer from "./components/footer";
 
+// Imagen
+import imagen from "../public/img/music.svg";
+
 // Hoja de estilos
 import styles from "./styles/index.css";
 
@@ -98,6 +101,7 @@ export function CatchBoundary() {
       <p className="error">
         {error.status} {error.statusText}
       </p>
+      <img className="imagen-error" src={imagen} alt="Imagen de error" />
       <div className="contenedor-enlace">
         <Link className="error-enlace" to="/">
           Volver al inicio
@@ -113,6 +117,7 @@ export function ErrorBoundary({ error }) {
       <p className="error">
         {error.status} {error.statusText}
       </p>
+      <img className="imagen-error" src={imagen} alt="Imagen de error" />
       <div className="contenedor-enlace">
         <Link lassName="error-enlace" to="/">
           Volver al inicio
