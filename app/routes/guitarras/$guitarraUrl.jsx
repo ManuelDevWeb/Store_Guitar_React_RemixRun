@@ -3,9 +3,6 @@ import { useLoaderData } from "@remix-run/react";
 // Funciones que traen informacion del servidor
 import { getGuitarraByUrl } from "../../models/guitarras.server";
 
-// Hoja de estilos
-import styles from "../../styles/guitarras.css";
-
 // Funcion para agregar informacion meta al componente Meta que nos provee remix run
 // Ya no toca llamar el componente Meta, puesto se agrego en el archivo root.jsx
 export function meta({ data }) {
@@ -24,19 +21,6 @@ export function meta({ data }) {
     title: `GuitarLA - ${data[0].attributes.nombre}`,
     description: `Guitarras, venta de guitarras, guitarra ${data[0].attributes.nombre}`,
   };
-}
-
-// Funcion para agregar hojas de estilo y link al componente Link que nos provee remix run
-// Ya no toca llamar el componente Link, puesto se agrego en el archivo root.jsx
-export function links() {
-  // Arreglo con cada uno de los objetos con la hoja de estilos a agregar
-  return [
-    // Hoja de estilos local
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
 }
 
 // Funcion loader (Loader es lo que se usa cuando el componente va a cargar datos)
@@ -67,7 +51,7 @@ const Guitarra = () => {
   const { nombre, descripcion, precio, imagen } = guitarra[0].attributes;
 
   return (
-    <main className="contenedor guitarra">
+    <div className=" guitarra">
       <img
         className="imagen"
         src={imagen.data.attributes.url}
@@ -78,7 +62,7 @@ const Guitarra = () => {
         <p className="texto">{descripcion}</p>
         <p className="precio">{precio}</p>
       </div>
-    </main>
+    </div>
   );
 };
 

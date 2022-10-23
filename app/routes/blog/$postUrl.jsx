@@ -5,9 +5,6 @@ import { getPostByUrl } from "~/models/posts.server";
 // Funcion encargada de formatear fecha
 import { formatearFecha } from "~/utils/helper";
 
-// Hoja de estilos
-import styles from "../../styles/blog.css";
-
 // Funcion para agregar la informacion meta al componente Meta que nos provee remix run
 // Ya no toca llamar el componente Meta, puesto se agrego el archivo root.jsx
 export function meta({ data }) {
@@ -26,19 +23,6 @@ export function meta({ data }) {
     title: `GuitarLA - ${data[0].attributes.titulo}`,
     description: `Guitarras, venta de guitarras, blog ${data[0].attributes.titulo}`,
   };
-}
-
-// Funcion para agregar hojas de estilos y link al componente Link que nos provee remix run
-// Ya no toca llamar el componente Link, puesto se agrego el archivo root.jsx
-export function links() {
-  // Arreglo con cada uno de los objetos con la hoja de estilos a agregar
-  return [
-    // Hoja de estilos local
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
 }
 
 // Funcion loader (Loader es lo que se usa cuando el componente va a cargar datos)
