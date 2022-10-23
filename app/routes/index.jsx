@@ -3,14 +3,17 @@ import { useLoaderData } from "@remix-run/react";
 // Funciones que traen informacion del servidor
 import { getGuitarras } from "~/models/guitarras.server";
 import { getPosts } from "~/models/posts.server";
+import { getCurso } from "~/models/curso.server";
 
 // Components
 import ListadoGuitarras from "~/components/listadoGuitarras";
 import ListadoPosts from "~/components/listadoPosts";
+import Curso from "~/components/curso";
 
 // Hoja de estilos
 import stylesGuitarras from "../styles/guitarras.css";
 import stylesBlogs from "../styles/blog.css";
+import stylesCurso from "../styles/curso.css";
 
 // Funcion para agregar informacion meta al componente Meta que nos provee remix run
 // Ya no toca llamar el componente Meta, puesto se agrego en el archivo root.jsx
@@ -35,6 +38,10 @@ export function links() {
       rel: "stylesheet",
       href: stylesBlogs,
     },
+    {
+      rel: "stylesheet",
+      href: stylesCurso,
+    },
   ];
 }
 
@@ -42,23 +49,30 @@ export function links() {
 export async function loader() {
   // Realizando multiples llamadas a la API y que se ejecuten al mismo tiempo
   // guitarras-> getGuitarras() y posts-> getPosts()
-  const [guitarras, posts] = await Promise.all([getGuitarras(), getPosts()]);
+  const [guitarras, posts, curso] = await Promise.all([
+    getGuitarras(),
+    getPosts(),
+    getCurso(),
+  ]);
 
   return {
     guitarras: guitarras.data,
     posts: posts.data,
+    curso: curso.data,
   };
 }
 
 const Index = () => {
-  // Obteniendo las guitarras y posts del loader para utilizarlas en el componente
-  const { guitarras, posts } = useLoaderData();
+  // Obteniendo las guitarras, curso y posts del loader para utilizarlas en el componente
+  const { guitarras, posts, curso } = useLoaderData();
 
   return (
     <>
       <main className="contenedor">
         <ListadoGuitarras guitarras={guitarras} />
       </main>
+
+      <Curso curso={curso.attributes} />
 
       <section className="contenedor">
         <ListadoPosts posts={posts} />
