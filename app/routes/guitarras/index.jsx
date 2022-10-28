@@ -21,6 +21,7 @@ export async function loader() {
   return guitarras.data;
 }
 
+// Recordemos que el index.jsx se pinta por defecto al ir a la ruta guitarras
 const Tienda = () => {
   // Obteniendo las guitarras del loader para utilizarlas en el componente
   const guitarras = useLoaderData();

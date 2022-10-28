@@ -62,6 +62,7 @@ export async function loader() {
   };
 }
 
+// Primary page
 const Index = () => {
   // Obteniendo las guitarras, curso y posts del loader para utilizarlas en el componente
   const { guitarras, posts, curso } = useLoaderData();
