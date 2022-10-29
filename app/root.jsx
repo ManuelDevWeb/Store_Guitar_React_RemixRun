@@ -58,7 +58,7 @@ export function links() {
   ];
 }
 
-// Funcion Principal
+// Funcion Principal App
 export default function App() {
   return (
     <Document>
