@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet, useOutletContext } from "@remix-run/react";
 
 // Hoja de estilos
 import styles from "../styles/guitarras.css";
@@ -19,8 +19,11 @@ export function links() {
 const Tienda = () => {
   return (
     <main className="contenedor">
-      {/* Inyectando cada componente (Que esten dentro de la carpeta que se llaman igual a este archivo. Por defecto llama a index.jsx) */}
-      <Outlet />
+      {/* 
+        Inyectando cada componente (Que esten dentro de la carpeta que se llaman igual a este archivo. Por defecto llama a index.jsx) 
+        y enviando informacion del context
+      */}
+      <Outlet context={useOutletContext()} />
     </main>
   );
 };

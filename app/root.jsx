@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Meta,
   Links,
@@ -60,10 +61,36 @@ export function links() {
 
 // Funcion Principal App
 export default function App() {
+  // State que maneja el valor de carrito
+  const [carrito, setCarrito] = useState([]);
+
+  // Funcion para agregar productos al state de carrito
+  const agregarCarrito = (guitarra) => {
+    // Validando si ya existe esa guitarra en el carrito
+    if (carrito.some((guitarraState) => guitarraState.id === guitarra.id)) {
+      // Iteramos sobre el arreglo e identificamos el elemento duplicado
+      const carritoActualizado = carrito.map((guitarraState) => {
+        if (guitarraState.id === guitarra.id) {
+          // Reescribimos la cantidad
+          guitarraState.cantidad = guitarra.cantidad;
+        }
+        return guitarraState;
+      });
+      setCarrito(carritoActualizado);
+    } else {
+      setCarrito([...carrito, guitarra]);
+    }
+  };
+
   return (
     <Document>
       {/* Inyectando cada componente en el Layout (Que esten en routes y a cada uno de ellos se le genera una ruta) */}
-      <Outlet />
+      <Outlet
+        // Context, aca compartimos los state y funciones con todos los componentes de la app
+        context={{
+          agregarCarrito,
+        }}
+      />
     </Document>
   );
 }
