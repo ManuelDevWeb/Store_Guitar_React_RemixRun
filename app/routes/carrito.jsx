@@ -31,7 +31,7 @@ const Carrito = () => {
   const [total, setTotal] = useState(0);
 
   // Accediento a los valores del contexto
-  const { carrito, actualizarCantidad } = useOutletContext();
+  const { carrito, actualizarCantidad, eliminarGuitarra } = useOutletContext();
 
   // useEffect que se ejecuta cada que cambie carrito
   useEffect(() => {
@@ -51,9 +51,9 @@ const Carrito = () => {
           <h2>Articulos</h2>
           {
             // Validando e iterando sobre el carrito
-            carrito.length === 0
+            carrito?.length === 0
               ? "Carrito Vacio"
-              : carrito.map((producto) => (
+              : carrito?.map((producto) => (
                   <div key={producto.id} className="producto">
                     <div>
                       <img
@@ -92,6 +92,14 @@ const Carrito = () => {
                         <span>{producto.precio * producto.cantidad}</span>{" "}
                       </p>
                     </div>
+
+                    <button
+                      type="button"
+                      className="btn_eliminar"
+                      onClick={() => eliminarGuitarra(producto.id)}
+                    >
+                      X
+                    </button>
                   </div>
                 ))
           }

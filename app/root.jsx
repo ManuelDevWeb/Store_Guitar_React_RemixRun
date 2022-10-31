@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Meta,
   Links,
@@ -61,8 +61,20 @@ export function links() {
 
 // Funcion Principal App
 export default function App() {
+  // Si el codigo es del servidor indicamos que no haga nada, si es del navegador obtenemos el valor de carrito del local storage y si no existe, asignamos arreglo vacio a la variable
+  const carritoLocalStorage =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("carrito")) ?? []
+      : null;
+
   // State que maneja el valor de carrito
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(carritoLocalStorage);
+
+  // useEffect que se ejecuta cada que cambia el state de carrito
+  useEffect(() => {
+    // Seteando el carrito en el local storage
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
 
   // Funcion para agregar productos al state de carrito
   const agregarCarrito = (guitarra) => {
@@ -84,7 +96,7 @@ export default function App() {
 
   // Funcion que actualiza la cantidad de guitarras a comprar
   const actualizarCantidad = (guitarra) => {
-    // Iteramos sobre el arreglo e identificamos el elemento duplicado
+    // Iteramos sobre el arreglo para sobreescribir la cantidad
     const carritoActualizado = carrito.map((guitarraState) => {
       if (guitarraState.id === guitarra.id) {
         // Reescribimos la cantidad
@@ -92,6 +104,15 @@ export default function App() {
       }
       return guitarraState;
     });
+    setCarrito(carritoActualizado);
+  };
+
+  // Funcion para eliminar guitarra del carrito
+  const eliminarGuitarra = (id) => {
+    // Iteramos sobre el arreglo e identificamos el elemento a eliminar
+    const carritoActualizado = carrito.filter(
+      (guitarraState) => guitarraState.id !== id
+    );
     setCarrito(carritoActualizado);
   };
 
@@ -104,6 +125,7 @@ export default function App() {
           agregarCarrito,
           carrito,
           actualizarCantidad,
+          eliminarGuitarra,
         }}
       />
     </Document>
