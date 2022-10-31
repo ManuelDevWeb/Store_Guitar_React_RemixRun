@@ -82,6 +82,19 @@ export default function App() {
     }
   };
 
+  // Funcion que actualiza la cantidad de guitarras a comprar
+  const actualizarCantidad = (guitarra) => {
+    // Iteramos sobre el arreglo e identificamos el elemento duplicado
+    const carritoActualizado = carrito.map((guitarraState) => {
+      if (guitarraState.id === guitarra.id) {
+        // Reescribimos la cantidad
+        guitarraState.cantidad = guitarra.cantidad;
+      }
+      return guitarraState;
+    });
+    setCarrito(carritoActualizado);
+  };
+
   return (
     <Document>
       {/* Inyectando cada componente en el Layout (Que esten en routes y a cada uno de ellos se le genera una ruta) */}
@@ -89,6 +102,8 @@ export default function App() {
         // Context, aca compartimos los state y funciones con todos los componentes de la app
         context={{
           agregarCarrito,
+          carrito,
+          actualizarCantidad,
         }}
       />
     </Document>
